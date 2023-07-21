@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog App</title>
+
+  <link rel="stylesheet" href="css/adminhome.css">
+
+</head>
+<body>
+  <header>
+  <div class="navbar">
+    <div class="dropdown dropdown-left"> <!-- Dropdown for "User" -->
+      
+        <a href="/admin" style="text-decoration: none; color: black;">User</a>
+        <!-- Add any other user-related links here -->
+      
+    </div>
+    <div class="dropdown dropdown-center"> <!-- Dropdown for "Topic Manager" -->
+      <button class="dropbtn">Topic Manager</button>
+      <div class="dropdown-content">
+        <a href="/admin/addManager">Add Manager</a>
+        <a href="/admin/viewManager">View Manager</a>
+        <!-- Add any other links related to the topic manager here -->
+      </div>
+    </div>
+    <div class="dropdown dropdown-right"> <!-- Dropdown for "Categories" -->
+      <button class="dropbtn">Categories</button>
+      <div class="dropdown-content">
+        <a href="#">Add Categories</a>
+        <a href="#">View Categories</a>
+        <!-- Add any other links related to categories here -->
+      </div>
+    </div>
+    <div class="dropdown"> <!-- Dropdown for "Login" -->
+      <button class="dropbtn">Login</button>
+      <div class="dropdown-content login-dropdown">
+        <a href="/user/login">User</a>
+        <a href="/admin/logout">Logout Admin</a>
+        <a href="#">Topic Manager</a>
+      </div>
+    </div>
+  </div>
+</header>
+<section>
+  <div style="padding: 10px;">
+    <h1>Users</h1>
+    <div class="table">
+      <table class="usertable" border="1">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Type</th>
+          <th>Signup Time</th>
+          <th>Approved</th>
+          
+        </tr>
+        <% usr.forEach((user)=> { %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.password %></td>
+            <td><%= user.type %></td>
+            <td><%= user.date %></td>
+            <td><%= user.approved %></td>
+            <td><a href="/admin/edit/<%= user._id %>"><button>Edit</button></a></td>
+          </tr>
+        <% }) %>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Add your page content below this line -->
+</body>
+</html>
