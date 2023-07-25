@@ -93,7 +93,7 @@
  
  
   .usertable {
-    width: 100%;
+    width: 50%;
     border-collapse: collapse;
     margin-top: 20px;
   }
@@ -124,6 +124,9 @@
   .usertable button {
     padding: 5px 10px;
     background-color:blue;
+    border-radius: 4px;
+    height: 2.5rem;
+    width: 5.5rem;
     color: white;
     border: none;
     cursor: pointer;
@@ -132,6 +135,11 @@
   .usertable button:hover {
     background-color: blue;
   }
+  .table{
+    margin-top: 4rem;
+    margin-left:18rem
+  }
+  
   </style>
 
 </head>
@@ -172,24 +180,21 @@
 </header>
 <section>
   <div style="padding: 10px;">
-    <h1>Topic Managers</h1>
+    
     <div class="table">
+        <h1>Category.</h1>
       <table class="usertable" border="1">
         <tr>
-          <th>Email</th>
-          <th>Password</th>
-          <th>Category</th>
-          <th>Approved</th>
+          <th>Topic</th>
+          
           
         </tr>
-        <% mngr.forEach((manager)=> { %>
+        <% topic.forEach((topic)=> { %>
           <tr>
             
-            <td><%= manager.email %></td>
-            <td><%= manager.password %></td>
-            <td><%= manager.category %></td>
-            <td><%= manager.approved %></td>
-            <td><a href="/admin/editManager/<%= manager._id %>"><button>Edit</button></a></td>
+            <td><%= topic.topic %></td>
+            <td style="width: 11.3rem;"><a href="/admin/editCategory/<%= topic._id %>"><button>Edit</button></a>
+            <a href="/admin/deleteCategory/<%= topic._id %>"><button style="background-color: red;">Delete</button></a></td>
           </tr>
         <% }) %>
       </table>

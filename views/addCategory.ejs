@@ -50,21 +50,13 @@
 </head>
 <body>
   <div class="form-container">
-    <h2 style="color: #0d6efd;">Add Topic Manager.</h2>
+    <h2 style="color: #0d6efd;">Add Topoic.</h2>
     <form id="editForm" action="" method="post">
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email"  required>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password"  required>
-      <label for="type">Category:</label>
-      <select id="category" name="category">
-        <option value="">select a topic</option>
-        <% cat.forEach((cat)=>{%>
-        <option value=<%= cat.topic %>><%= cat.topic%></option>
-        <% }) %>
-      </select>
+      <label for="category">Topic:</label>
+      <input type="text" id="topic" name="topic"  required>
+      
 
 
       <input type="submit" value="Add">

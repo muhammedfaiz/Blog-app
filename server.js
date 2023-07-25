@@ -4,6 +4,7 @@ var session=require("express-session")
 var user_Router=require('./routes/user')
 var home_Router=require('./routes/home')
 var admin_Router=require('./routes/admin')
+var manager_Router=require('./routes/manager')
 var User=require('./models/user_Schema')
 var Admin=require('./models/admin_Schema')
 var bodyParser=require('body-parser')
@@ -21,5 +22,6 @@ app.use(express.static('./public'));
 app.use('/user',user_Router);
 app.use('/',home_Router);
 app.use('/admin',admin_Router)
+app.use('/manager',manager_Router)
 
 app.listen(2000)

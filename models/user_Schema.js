@@ -7,7 +7,8 @@ var userSchema=mongoose.Schema({
     password:String,
     date:Date,
     type:Number,
-    approved:Number
+    approved:Number,
+    reviews:[{type:mongoose.Schema.Types.ObjectId,ref:'Review'}]
 })
 
 var User=mongoose.model('User',userSchema);

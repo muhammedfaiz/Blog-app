@@ -1,0 +1,41 @@
+<%- include("./header.ejs") %>
+
+  <main class="container">
+    <div class="row p-4">
+      <!-- Example Post Card -->
+      <% if(typeof data !== "undefined"){%>
+        <% data.forEach((res)=>{%>
+      <div class="col-12 pb-4">
+        <div class="card">
+          <div class="card-body d-flex justify-content-between flex-column">
+            <h3 class="card-title"><%= res.title%></h3>
+            <span class="card-date">posted by <%= res.userName %></span><br>
+            <% if (res.approved === 1) { %>
+              <div class="badge bg-success text-wrap" style="width: 6rem;font-size: 1rem;">
+                Approved
+              </div><br>
+            <% } else if (res.approved === -1) { %>
+              <div class="badge bg-danger text-wrap" style="width: 6rem;font-size: 1rem;">
+                Declined
+              </div><br>
+            <% } else { %>
+              <div class="badge bg-info text-wrap" style="width: 6rem; font-size: 1rem;">
+                Pending
+              </div><br>
+            <% } %>
+            <p class="card-text"><%= res.description%></p>
+            <span class="card-date">posted on <%= res.date %></span><br>
+            <div class="d-flex mt-3 mr-4 align-items-center icons">
+                <a href="/user/editPost/<%= res._id %>" class="btn btn-primary">Edit</a>&nbsp;&nbsp;
+                <a href="/user/deletePost/<%= res._id %>" class="btn btn-danger">Delete</a>
+              </div>
+          </div>
+        </div>
+      </div>
+      <%})}%>
+
+      <!-- You can add more post cards dynamically through the backend -->
+    </div>
+  </main>
+
+  <%- include("./footer.ejs") %>

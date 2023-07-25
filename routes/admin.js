@@ -2,6 +2,7 @@ var express=require('express');
 var Admin=require('../models/admin_Schema')
 var User=require('../models/user_Schema')
 var Manager=require('../models/manager_Schema')
+var Category=require('../models/category_Schema')
 var router=express.Router()
 
 
@@ -22,7 +23,7 @@ router.post('/login',(req,res)=>{
         if(!response){
             res.render('login',{message:'invalid admin email..'})
         }else if(response.password==adminInfo.password){
-            res.redirect('/');
+            res.redirect('/admin');
         }else{
             res.render('login',{message:'invalid password'})
         }
@@ -33,7 +34,7 @@ router.post('/login',(req,res)=>{
 })
 
 router.get('/logout',(req,res)=>{
-    res.redirect('/admin/login')
+    res.redirect('/')
 })
 router.get('/edit/:id',(req,res)=>{
     var id=req.params.id;
@@ -58,7 +59,10 @@ router.post('/edit/:id',(req,res)=>{
 
 
 router.get('/addManager',(req,res)=>{
-    res.render('addManager')
+    Category.find().then(response=>{
+        res.render('addManager',{cat:response})
+    })
+    
 })
 
 router.post('/addManager',(req,res)=>{
@@ -72,13 +76,15 @@ router.post('/addManager',(req,res)=>{
 
     newManger.save().then(response=>{
         console.log(response)
-        res.redirect('/admin');
+        res.redirect('/admin/viewManager');
     })
 })
 router.get('/viewManager',(req,res)=>{
     Manager.find().sort({_id:-1}).then(response=>{
         res.render('viewManager',{mngr:response})
+
     })
+    
     
 })
 
@@ -102,4 +108,50 @@ router.post('/editManager/:id',(req,res)=>{
         res.redirect('/admin/viewManager')
     })
 })
+
+
+router.get('/addCategory',(req,res)=>{
+    res.render("addCategory")
+});
+router.post('/addCategory',(req,res)=>{
+    var info=req.body
+    var newCategory=new Category({
+        topic:info.topic
+    })
+    newCategory.save().then(response=>{
+        console.log(response)
+        res.redirect('/admin')
+    })
+})
+
+router.get('/viewCategory',(req,res)=>{
+    Category.find().then(response=>{
+        res.render('viewCategory',{topic:response});
+    })
+})
+
+router.get('/editCategory/:id',(req,res)=>{
+    var id=req.params.id
+    Category.findById(id).then(response=>{
+        res.render('editCategory',{cat:response});
+    })
+})
+router.post('/editCategory/:id',(req,res)=>{
+    var id=req.params.id
+    var change=req.body
+    Category.findByIdAndUpdate(id,{
+        topic:change.topic
+    }).then(response=>{
+        res.redirect('/admin/viewCategory')
+    })
+})
+
+
+router.get('/deleteCategory/:id',(req,res)=>{
+    var id=req.params.id
+    Category.findByIdAndRemove(id).then(response=>{
+        res.redirect('/admin/viewCategory')
+    })
+})
+
 module.exports=router
