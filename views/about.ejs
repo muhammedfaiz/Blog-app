@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog App - User Dashboard</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/"><i class="bi bi-pencil-fill"></i> Blog App.</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/user/login">Create Post</a>
+            </li>
+            <li class="nav-item dropdown"> <!-- Added the "dropdown" class to the list item -->
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Login
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="userDropdown"> <!-- Added the dropdown menu -->
+                <li><a class="dropdown-item" href="/user/login">User</a></li>
+                <li><a class="dropdown-item" href="/admin/login">Admin</a></li>
+                <li><a class="dropdown-item" href="/manager/login">Manager</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <h2 class="display-4 text-center mb-4">BlogExpress: Your Gateway to Inspiring Stories and Valuable Insights!</h2>
+          <p>Welcome to BlogExpress, your one-stop destination for a diverse range of captivating blog posts. Whether you're seeking inspiration, valuable insights, or just looking to indulge in a world of fascinating stories, our blog app has got you covered. Join our thriving community of passionate writers and avid readers as we explore various niches, share experiences, and exchange knowledge. Get ready to embark on an exciting journey of discovery and enlightenment with BlogExpress!</p>
+
+          <h3>Niche Diversity:</h3>
+          <p>At BlogExpress, we pride ourselves on catering to a wide array of interests and passions. Our blog app covers a vast range of niches, including technology, travel, food, fashion, health, personal development, and more. Whatever your interests may be, you'll find engaging content tailored to your preferences.</p>
+
+          <h3>Expert Contributors:</h3>
+          <p>Our platform boasts a team of expert contributors and guest bloggers who bring their wealth of knowledge and unique perspectives to our blog app. From industry specialists to seasoned travelers, renowned chefs, and personal development gurus, our contributors are dedicated to providing valuable insights and thought-provoking content.</p>
+
+          <h3>Inspiring Stories:</h3>
+          <p>Discover heartwarming and inspiring stories from people around the world. From tales of triumph over adversity to acts of kindness that touch the soul, our blog app celebrates the human spirit and showcases the power of storytelling to connect us all.</p>
+
+          <h3>Informative How-Tos:</h3>
+          <p>Looking to learn something new or acquire practical skills? Our how-to guides and tutorials cover a myriad of subjects. Whether it's mastering a new recipe, learning photography tips, or picking up essential life hacks, BlogExpress is your go-to source for actionable knowledge.</p>
+
+          <h3>Thoughtful Opinions:</h3>
+          <p>Engage in thought-provoking discussions with our opinion pieces that tackle contemporary issues and trends. Our writers express their views on topics ranging from sustainability and inclusivity to technological advancements and societal challenges.</p>
+
+          <h3>Interactive Community:</h3>
+          <p>BlogExpress is more than just a blog app; it's a thriving community of like-minded individuals eager to share ideas and engage in meaningful conversations. With comments enabled on all blog posts, you have the opportunity to connect with authors and fellow readers, fostering a sense of belonging and camaraderie.</p>
+
+          <h3>Eye-Catching Visuals:</h3>
+          <p>We understand the power of visuals in enhancing the reading experience. Our blog posts come alive with captivating images, infographics, and videos, ensuring an immersive and enjoyable journey through each article.</p>
+
+          <h3>SEO-Optimized Content:</h3>
+          <p>To ensure our content reaches a wider audience, we employ SEO best practices. This means you can easily discover our blog posts through search engines, allowing you to stay updated with the latest and most relevant information.</p>
+
+          <h3>Newsletter Subscription:</h3>
+          <p>Stay in the loop with BlogExpress by subscribing to our newsletter. Receive regular updates on new content, exclusive offers, and exciting announcements delivered right to your inbox.</p>
+
+          <h3>Conclusion:</h3>
+          <p>BlogExpress is your go-to blog app for a fulfilling and enriching reading experience. Dive into an ocean of knowledge, creativity, and inspiration as you explore our diverse content offerings. Join our ever-growing community of readers and writers, and let BlogExpress be your gateway to a world of captivating stories and valuable insights!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-white text-center py-3">
+    <!-- Footer content goes here -->
+    <p>&copy; 2023 BlogExpress. All rights reserved.</p>
+  </footer>
+
+  <!-- Include Bootstrap JS and other scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.js"></script>
+</body>
+</html>

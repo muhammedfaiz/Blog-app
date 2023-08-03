@@ -13,17 +13,9 @@
             <p class="card-text"><%= res.description%></p>
             <span class="card-date">posted on <%= res.date %></span><br>
             <div class="d-flex mt-3 mr-4 icons">
-            
-              <a href="/user/like/<%= res._id%>" id="like_<%= res._id %>" class="ms-2 me-2" onclick="userLike('<%= res._id %>')">
-                <box-icon name='heart'></box-icon>
-              </a>              
-              <a href="#" class="me-2">
-                <box-icon name='comment'></box-icon>
-              </a>
-              
-              <a href="/user/readMore/<%= res._id%>" class="me-2">
-                <box-icon name='file-find'></box-icon>
-              </a>
+              <div class="d-flex mt-3 mr-4 align-items-center icons">
+                <a href="/user/readMore/<%= res._id %>" class="btn btn-primary">Read More</a>
+              </div>
             </div>
           </div>
         </div>

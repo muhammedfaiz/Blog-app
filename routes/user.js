@@ -9,7 +9,7 @@ var Review=require('../models/review_Schema')
 router.use(function(req,res,next){
     res.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
     res.setHeader("Pragma","no-cache");
-    res.setHeader("Expires","0");
+    res.setHeader("Expires","30000");
     next();
 
 })
@@ -52,7 +52,6 @@ router.post('/signup',(req,res)=>{
         }
         
     })
-   var user_session=req.session
 })
 
 
@@ -70,6 +69,7 @@ router.post('/login',(req,res)=>{
         else if(response.password==loginInfo.password){
             if(response.approved===1){
                 req.session.user=response;
+                
                 res.redirect('/user');
             }else{
                 res.render('login',{message:"You are Disapproved"})
@@ -98,7 +98,10 @@ router.get('/',(req,res)=>{
 router.get("/readMore/:id",(req,res)=>{
     var id = req.params.id
     Post.findById(id).then(response=>{
-        res.render('userRead',{blog:response})
+        var postId=response._id
+        Review.find({postId:postId}).then((result)=>{
+            res.render("userRead",{blog:response,comment:result})
+        })
     })
 })
 
@@ -142,7 +145,6 @@ router.post('/createPost',(req,res)=>{
 
 router.get('/managePost', (req, res) => {
     var id = req.session.user._id
-    var status="pending"
     Post.find({ userId: id }).then(response => {
             res.render('managePost',{data:response})
     })
@@ -175,13 +177,21 @@ router.get("/deletePost/:id",(req,res)=>{
         res.redirect('/user/managePost')
     })
 })
-router.get('/like/:id',(req,res)=>{
-    id=req.params.id
-    var userId=req.session.user._id
-    Review.updateOne({user}).then(response=>{
-        console.log(response)
-        res.redirect("/user")
-    })
+
+router.post('/comment/:id',(req,res)=>{
+    var postId=req.params.id
+    var info=req.body
+    var userName=req.session.user.name
+      
     
+    var newReview=new Review({
+        comment:info.comment,
+        userName:userName,
+        postId:postId
+    })
+    newReview.save().then(response=>{
+        res.redirect(`/user/readMore/${postId}`)
+    })
+
 })
     module.exports=router;

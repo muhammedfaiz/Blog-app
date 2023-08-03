@@ -1,11 +1,17 @@
 var express=require('express')
 var router=express.Router()
 var session=require('express-session');
-var user_Sessoin=require('./user')
+var Post=require('../models/post_Schema')
 
 
 router.get('/',(req,res)=>{
-    res.render('home')
+    
+    Post.find({approved:1}).then(response=>{
+        res.render("home",{data:response})
+    })
+})
+router.get('/about',(req,res)=>{
+    res.render('about')
 })
 
 

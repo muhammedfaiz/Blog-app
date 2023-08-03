@@ -27,7 +27,7 @@
             <span class="card-date">posted on <%= res.date %></span><br>
             <div class="d-flex mt-3 mr-4 align-items-center icons">
                 <a href="/user/editPost/<%= res._id %>" class="btn btn-primary">Edit</a>&nbsp;&nbsp;
-                <a href="/user/deletePost/<%= res._id %>" class="btn btn-danger">Delete</a>
+                <a class="btn btn-danger" onclick="confirmation(`<%= res._id%>`)">Delete</a>
               </div>
           </div>
         </div>
@@ -37,5 +37,14 @@
       <!-- You can add more post cards dynamically through the backend -->
     </div>
   </main>
+  <script>
+    function confirmation(id){
+      if(confirm("Are you sure you want to delete?")){
+        window.location.href=`/user/deletePost/${id}`
+      }else{
+        return 0;
+      }
+    }
+  </script>
 
   <%- include("./footer.ejs") %>

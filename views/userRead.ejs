@@ -1,24 +1,79 @@
 <%- include('./header.ejs')%>
-  <div class="container py-4">
-    <div class="row">
-      <div class="col-md-8 mx-auto">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title"><%= blog.title%></h3>
-            <span class="card-date">Posted by <%= blog.userName%> on <%= blog.date%></span><br>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card border-0 shadow">
+        <% if(typeof blog!=="undefined"){%>
+        <div class="card-body">
+          <h2 class="card-title text-primary mb-3"><%= blog.title%></h2>
+          <p class="card-text mb-2 text-muted">Posted by <%= blog.userName%> on <%= blog.date%></p>
+          <p class="card-text text-justify"><%= blog.description%></p>
+          <hr>
+          <h4>Content:</h4>
+          <p class="card-text text-justify"><%= blog.content%></p>
+        </div>
+        <%}%>
+        <div class="card-footer bg-white">
+          
+          <div class="d-flex align-items-center star">
             
-          </div>
-          <div class="card-body">
-            <p class="card-text"> Description: <%= blog.description%></p>
-            <hr>
-            <h4>Content:</h4>
-            <p>
-              <%= blog.content%>
-            </p>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
           </div>
         </div>
       </div>
+
+     
+      <div class="card mt-4">
+        <div class="card-header bg-primary text-white">
+          <h4>Leave a Comment</h4>
+        </div>
+        <div class="card-body">
+          <form action="/user/comment/<%= blog._id %>" method="post">
+            <div class="form-group pb-4">
+              <label for="commentContent">Comment</label>
+              <textarea id="commentContent" name="comment" class="form-control" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Comment</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Read Comments Area -->
+      <% if(typeof comment!=='undefined'){%>
+      <div class="card mt-4">
+        <div class="card-header bg-primary text-white">
+          <h4>Comments</h4>
+        </div>
+        <div class="card-body">
+          <% comment.forEach((res)=>{%>
+            <div class="card mt-2">
+              <div class="card-body">
+                
+                <p class="card-text"><strong><%= res.userName%></strong>:<%= res.comment%></p>
+              
+              </div>
+            </div>
+          <%})%>
+        </div>
+      </div>
+      <%}%>
     </div>
   </div>
+</div>
+<script>
+  var stars=document.querySelectorAll('.star i')
+  stars.forEach((item,index1)=>{
+    item.addEventListener('click',()=>{
+      stars.forEach((star,index2)=>{
+        index1 >= index2 ? star.classList.add('active'):star.classList.remove("active");
+      })
+    })
+  })
 
+ 
+</script>
 <%- include('./footer.ejs')%>

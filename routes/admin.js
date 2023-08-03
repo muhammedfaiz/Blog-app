@@ -3,13 +3,36 @@ var Admin=require('../models/admin_Schema')
 var User=require('../models/user_Schema')
 var Manager=require('../models/manager_Schema')
 var Category=require('../models/category_Schema')
-var router=express.Router()
+var router=express.Router();
+var session=require('express-session')
 
+router.use(
+    session({
+        secret:"secret-key",
+        resave:false,
+        saveUninitialized:true,
+        cookie:{secure:false},
+    })
+)
+router.use(function(req,res,next){
+    res.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+    res.setHeader("Pragma","no-cache");
+    res.setHeader("Expires","0");
+    next();
+
+})
 
 router.get('/',(req,res)=>{
-    User.find().sort({_id:-1}).then(response=>{
-        res.render('admin',{usr:response});
-    })
+
+    if(req.session.admin){
+        User.find().sort({_id:-1}).then(response=>{
+            res.render('admin',{usr:response});
+        })
+    }
+    else{
+        res.redirect('/')
+    }
+    
 })
 
 router.get('/login',(req,res)=>{
@@ -23,6 +46,7 @@ router.post('/login',(req,res)=>{
         if(!response){
             res.render('login',{message:'invalid admin email..'})
         }else if(response.password==adminInfo.password){
+            req.session.admin=response;
             res.redirect('/admin');
         }else{
             res.render('login',{message:'invalid password'})
@@ -34,6 +58,7 @@ router.post('/login',(req,res)=>{
 })
 
 router.get('/logout',(req,res)=>{
+    req.session.destroy()
     res.redirect('/')
 })
 router.get('/edit/:id',(req,res)=>{
